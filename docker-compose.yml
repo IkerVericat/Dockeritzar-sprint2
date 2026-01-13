@@ -6,8 +6,6 @@ services:
     container_name: EcoMotion_Environment
     ports:
       - "8081:80"
-    volumes:
-      - ./:/var/www/html
     environment:
       MARIADB_HOST: mariadb
       MARIADB_PORT: 3306

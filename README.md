@@ -1,57 +1,24 @@
-## How to use
+# Dockerització aplicació Sprint 2
 
-Run the full stack (PHP + Apache, PostgreSQL, and pgAdmin) with Docker. Configure your environment, start the services, and open the app in your browser.
+# 1. Requisits Previs
+Per garantir una instal·lació correcta, el sistema ha de complir amb:
+* **Docker Engine**: v20.10 o superior.
+* **Docker Compose**: v2.0 o superior.
+* **Sistema operatiu**: Linux o WSL2 (en cas d'utilitzar Windows)
 
-### Prerequisites
-- Docker and Docker Compose installed
 
-### 1) Configure environment
-Create your environment file from the example and fill in values:
+# 2. Estructura de Fitxers Rellevants
+
+L'arquitectura del projecte es basa en els següents components:
+
+* **`Dockerfile`**: Fitxer de definició multi-stage per a la creació de la imatge optimitzada.
+* **`docker-compose.yml`**: Orquestració dels serveis (Aplicació, MariaDB i phpMyAdmin).
+* **`.env`**: Configuració de les variables d'entorn i credencials de la base de dades.
+* **`docker/apache.conf`**: Configuració personalitzada del servidor web Apache.
+* **Volums (`db_data`)**: S'utilitzen volums per garantir la persistència de les dades de la base de dades MariaDB.
+
+# 3. Instruccions per a Dockeritzar-la
+Comanda per construir la imatge de l'aplicació localment:
 
 ```bash
-cp .env.example .env
-```
-
-Update `.env` with:
-- PostgreSQL: `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
-- pgAdmin: `PGADMIN_DEFAULT_EMAIL`, `PGADMIN_DEFAULT_PASSWORD`
-- Google Maps: `GOOGLE_MAPS_API_KEY` (enable the Maps JavaScript API in Google Cloud)
-
-### 2) Start the stack
-From the project root:
-
-```bash
-docker compose up -d --build
-```
-
-This will:
-- Build and start the web app at `http://localhost:8080`
-- Start PostgreSQL on port `5432` with a persistent volume
-- Start pgAdmin at `http://localhost:5053`
-
-
-## For developers
-
-### Branch conventions
-Use pascal case and short names please
-
-- feature/`Feature`
-
-Example: `feature/AddSideBar`
-
-### Commit conventions
-
-Use short, semantic commit messages (Conventional Commits style):
-
-- `feat:` new feature
-- `fix:` bug fix
-- `refactor:` refactoring changes
-
-Example: `feat: add markers`
-
-### Naming conventions
-
-- Files: `ThisIsAFile` (PascalCase)
-- Functions: `thisIsAFunction()` (camelCase)
-- Variables: `thisIsAVariable` (camelCase)
-- Constants: `THIS_IS_CONSTANT` (SCREAMING_SNAKE_CASE)
+docker build -t ecomotion-app:v1 .

@@ -1,3 +1,9 @@
+.git
+.github
+.idea
 .env
-.gitignore
-TODO.txt
+.env.example
+node_modules
+vendor
+tests
+storage/logs/*.log
