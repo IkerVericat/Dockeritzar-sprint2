@@ -28,11 +28,15 @@ storage/cache/
 storage/sessions/
 
 ## Database dumps/backups
-*.sql
+# Permetre init.sql i seed.sql per la documentació
+# *.sql
 *.sqlite
 
 ## Docker artifacts
 mariadb_data/
+# Permetre pujar la imatge Docker al GitHub
+# ecomotion-web
+# ecomotion-web.tar
 
 ## Misc
 *.bak
